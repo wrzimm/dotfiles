@@ -67,6 +67,24 @@ nmap <silent> <C-p> :tabprev<CR>
 imap <silent> <C-n> <esc><C-n>
 imap <silent> <C-p> <esc><C-p>
 
+" Mini Muf Explorer
+nnoremap <C-l> :MBEbn<CR>
+nnoremap <C-h> :MBEbp<CR>
+hi link MBENormal Comment
+hi link MBEChanged Special
+hi link MBEVisibleNormal SpecialKey
+hi link MBEVisibleChanged Title
+hi link MBEVisibleActiveNormal StatusLine
+hi link MBEVisibleActiveChanged Error
+
+
+" tagbar
+nnoremap <silent> <F8> :TagbarToggle<CR>
+let g:tagbar_left = 1
+
+" NERDTree
+nnoremap <silent> <F9> :NERDTreeToggle<CR>
+
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
