@@ -74,6 +74,17 @@ if exists("&undodir")
         set undodir=~/.vim/undo
 endif
 
+"
+" syntastic options
+" ===============================================================================
+" check header files
+let g:syntastic_cpp_check_header = 1
+" re-check includes at file write
+let g:syntastic_cpp_auto_refresh_includes = 1
+" include files directories
+let g:syntastic_cpp_include_dirs = [ 'include', '/usr/local/include/root' ]
+" ===============================================================================
+
 
 " typing this gives current date
 iab <expr> DATE strftime("%b %d, %Y")
