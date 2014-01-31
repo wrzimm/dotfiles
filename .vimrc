@@ -77,6 +77,8 @@ hi link MBEVisibleChanged Title
 hi link MBEVisibleActiveNormal StatusLine
 hi link MBEVisibleActiveChanged Error
 
+" gundo
+nnoremap <F5> :GundoToggle<CR>
 
 " tagbar
 nnoremap <silent> <F8> :TagbarToggle<CR>
@@ -106,7 +108,6 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_include_dirs = [ 'include', '/usr/local/include/root' ]
 " ===============================================================================
 
-
 " typing this gives current date
 iab <expr> DATE strftime("%b %d, %Y")
 
@@ -129,4 +130,4 @@ iab texintro %=========================================================%
 \<CR>%=========================================================%
 
 
-
+" vim: set undofile
