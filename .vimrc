@@ -23,6 +23,9 @@ set cpoptions+=n
 " auto indent
 set autoindent
 
+" filetype
+filetype plugin on
+
 
 " cursor for different modes
 if has("autocmd")
