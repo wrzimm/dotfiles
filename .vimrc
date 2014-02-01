@@ -108,6 +108,10 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_include_dirs = [ 'include', '/usr/local/include/root' ]
 " ===============================================================================
 
+" modelines
+set modeline
+set modelines=1
+
 " typing this gives current date
 iab <expr> DATE strftime("%b %d, %Y")
 
@@ -130,4 +134,5 @@ iab texintro %=========================================================%
 \<CR>%=========================================================%
 
 
-" vim: set undofile
+
+" vim: set undofile:
