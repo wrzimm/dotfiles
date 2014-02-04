@@ -35,12 +35,19 @@ if has("autocmd")
   au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
 endif
 
-" options for git-gutter: line numbers are black w/no highlighting
+" 
+" git-gutter: 
+" ===============================================================================
+" line numbers are black w/no highlighting
 highlight LineNr term=bold cterm=NONE ctermfg=black ctermbg=NONE gui=NONE guifg=black guibg=NONE
 highlight SignColumn ctermbg=NONE guifg=NONE
-" don't update so much:
+" update on stop typing
 let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
+" update on switch buffer
+let g:gitgutter_eager = 1
+" ignore whitespace      
+let g:gitgutter_diff_args = '-w'    
+" ===============================================================================
 
 " wild menu for better tab completion
 set wildmode=longest:full
