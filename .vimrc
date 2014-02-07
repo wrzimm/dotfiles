@@ -85,14 +85,14 @@ hi link MBEVisibleActiveNormal StatusLine
 hi link MBEVisibleActiveChanged Error
 
 " gundo
-nnoremap <F5> :GundoToggle<CR>
+nnoremap <F6> :GundoToggle<CR>
 
 " tagbar
-nnoremap <silent> <F8> :TagbarToggle<CR>
+nnoremap <silent> <F7> :TagbarToggle<CR>
 let g:tagbar_left = 1
 
 " NERDTree
-nnoremap <silent> <F9> :NERDTreeToggle<CR>
+nnoremap <silent> <F8> :NERDTreeToggle<CR>
 
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
