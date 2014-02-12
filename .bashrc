@@ -147,3 +147,7 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[0
 
 #workaround for wierd error with vi inside tmux
 #export DBUS_SESSION_BUS_ADDRESS=$(tr '\0' '\n' < /proc/$(pgrep -U $(whoami) gnome-session)/environ|grep ^DBUS_SESSION_BUS_ADDRESS=|cut -d= -f2-)
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# vim: set undofile:
