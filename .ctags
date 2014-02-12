@@ -1,6 +1,2 @@
-# ctags options
 --recurse=yes
---tag-relative=yes
 --exclude=.git
-
-# vim: set undofile:
