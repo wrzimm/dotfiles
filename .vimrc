@@ -115,6 +115,8 @@ let g:syntastic_cpp_auto_refresh_includes = 1
 let g:syntastic_cpp_include_dirs = [ 'include', '/usr/local/include/root' ]
 " c++ 11 standard
 let g:syntastic_cpp_compiler_options = '-std=c++11'
+" don't check latex
+let g:syntastic_tex_checker = []
 " ===============================================================================
 
 " modelines
