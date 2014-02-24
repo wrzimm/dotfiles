@@ -81,6 +81,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# 256 color terminal support
+TERM=xterm-256color
+
 # some more ls aliases
 alias ll='ls -ltrh'
 alias la='ls -A'

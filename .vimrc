@@ -74,15 +74,39 @@ nmap <silent> <C-p> :tabprev<CR>
 imap <silent> <C-n> <esc><C-n>
 imap <silent> <C-p> <esc><C-p>
 
+" buffer navigation
+nnoremap <C-l> :bn<CR>
+nnoremap <C-h> :bp<CR>
+
 " Mini Muf Explorer
-nnoremap <C-l> :MBEbn<CR>
-nnoremap <C-h> :MBEbp<CR>
-hi link MBENormal Comment
-hi link MBEChanged Special
-hi link MBEVisibleNormal SpecialKey
-hi link MBEVisibleChanged Title
-hi link MBEVisibleActiveNormal StatusLine
-hi link MBEVisibleActiveChanged Error
+" nnoremap <C-l> :MBEbn<CR>
+" nnoremap <C-h> :MBEbp<CR>
+" hi link MBENormal Comment
+" hi link MBEChanged Special
+" hi link MBEVisibleNormal SpecialKey
+" hi link MBEVisibleChanged Title
+" hi link MBEVisibleActiveNormal StatusLine
+" hi link MBEVisibleActiveChanged Error
+
+"
+" airline options
+" ===============================================================================
+" powerline fonts for airline
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+
+" shorten timeout length
+set timeout ttimeoutlen=50
+
+" don't wait for split
+set laststatus=2
+
+" buffer tab line
+let g:airline#extensions#tabline#enabled = 1
+" ===============================================================================
 
 " gundo
 nnoremap <F6> :GundoToggle<CR>
