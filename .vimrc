@@ -136,7 +136,7 @@ let g:syntastic_cpp_check_header = 1
 " re-check includes at file write
 let g:syntastic_cpp_auto_refresh_includes = 1
 " include files directories
-let g:syntastic_cpp_include_dirs = [ 'include', '/usr/local/include/root' ]
+let g:syntastic_cpp_include_dirs = [ 'include', '/usr/local/include/root', 'scripts/include' ]
 " c++ 11 standard
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 " latex
