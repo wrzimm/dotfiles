@@ -23,8 +23,6 @@ set cpoptions+=n
 " auto indent
 set autoindent
 
-" disable fucking auto comment
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " filetype
 filetype plugin on
@@ -340,5 +338,7 @@ iab texintro %=========================================================%
 \<CR>%=========================================================%
 
 
+" disable fucking auto comment
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " vim: set undofile:
