@@ -27,6 +27,10 @@ set autoindent
 " filetype
 filetype plugin on
 
+" highlight colors
+highlight Search ctermfg=Black ctermbg=Yellow
+highlight IncSearch ctermbg=Yellow ctermfg=Red
+
 
 " cursor for different modes
 if has("autocmd")
