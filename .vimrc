@@ -136,6 +136,9 @@ endif
 "
 " syntastic options
 " ===============================================================================
+" colors
+hi SpellBad ctermfg=yellow ctermbg=red guifg=yellow guibg=red
+hi SpellCap ctermfg=red ctermbg=yellow guifg=red  guibg=yellow
 " check header files
 let g:syntastic_cpp_check_header = 1
 " re-check includes at file write
