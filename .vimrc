@@ -4,6 +4,7 @@ au BufRead,BufNewFile *.go set filetype=go
 
 " syntax highlighting on
 syntax on
+set synmaxcol=120
 
 " folding options: {{{ and }}} define folds
 set foldmethod=marker

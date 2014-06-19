@@ -367,7 +367,7 @@ newmail-window-width=
 # Syntax: optnl-label {optnl-imap-host-name}folder-path
 #incoming-folders="UConn Physics" "#move {mail.phys.uconn.edu/ssl/novalidate-cert/user=zimmerman}INBOX {imap.gmail.com/ssl/user=wrzimm@gmail.com}INBOX"
 #TUNL "#move {imap.tunl.duke.edu/ssl/novalidate-cert/user=wrzimm}INBOX {imap.gmail.com/ssl/user=wrzimm@gmail.com}INBOX",
-incoming-folders="Duke" "#move {outlook.office365.com/ssl/user=wrz@duke.edu}INBOX {imap.gmail.com/ssl/user=wrzimm@gmail.com}INBOX",
+incoming-folders="Duke" "#move {outlook.office365.com/ssl/user=wrz@duke.edu}INBOX {imap.gmail.com/ssl/user=wrzimm@gmail.com}INBOX"
 
 # List of directories where saved-message folders may be. First one is
 # the default for Saves. Example: Main {host1}mail/[], Desktop mail\[]
@@ -390,7 +390,7 @@ address-book=
 global-address-book=
 
 # Set by Alpine; controls beginning-of-month sent-mail pruning.
-last-time-prune-questioned=114.4
+last-time-prune-questioned=114.6
 
 # Set by Alpine; controls display of "new version" message.
 last-version-used=6.02
