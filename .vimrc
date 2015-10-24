@@ -1,6 +1,37 @@
+" execute pathogen#infect()
+" syntax on
+" filetype plugin indent on
+"
+" enable pathogen for installing bundles
+if version >= 702
+call pathogen#infect()
+call pathogen#helptags()
+endif
+
 au BufWinLeave ?* mkview
-au BufWinEnter ?* silent loadview
+au BufWinEnter *.* silent loadview
+"au BufReadPost,BufWritePost ?* silent loadview
+"au BufWinEnter ?* silent loadview
 au BufRead,BufNewFile *.go set filetype=go
+au BufRead,BufNewFile *.dml set filetype=dml
+au BufRead,BufNewFile *.xfr set filetype=dml
+au BufRead,BufNewFile *.apptempl set filetype=xml
+au BufRead,BufNewFile *.compctrl set filetype=xml
+"au BufRead,BufNewFile *.cfg set filetype=dml
+"au BufRead,BufNewFile *.ini set filetype=dml
+
+" tabs
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" smartcase 
+set smartcase
+
+" line numbers are black w/no highlighting
+set number
+highlight LineNr term=bold cterm=NONE ctermfg=darkgray ctermbg=black gui=NONE guifg=black guibg=NONE
+highlight SignColumn ctermbg=NONE guifg=NONE
 
 " syntax highlighting on
 syntax on
@@ -10,119 +41,50 @@ set synmaxcol=120
 set foldmethod=marker
 highlight Folded ctermfg=green ctermbg=none
 
+" encryption settings
+"if version >= 704
+	"set cryptmethod=blowfish2
+"elseif version >= 703
+	"set cryptmethod=blowfish
+"endif
+
 " use mouse for naviagation
 set mouse=n
-
-" highlight search term
-set hlsearch
-
-set wrap linebreak nolist
-set number
-set numberwidth=3
-set cpoptions+=n
 
 " auto indent
 set autoindent
 
-
 " filetype
-filetype plugin on
+filetype plugin indent on
+
+" highlight search term
+set hlsearch
 
 " highlight colors
 highlight Search ctermfg=Black ctermbg=Yellow
 highlight IncSearch ctermbg=Yellow ctermfg=Red
 
-
 " cursor for different modes
-if has("autocmd")
-  au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-  au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-  au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-  au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-endif
-
-" 
-" git-gutter: 
-" ===============================================================================
-" line numbers are black w/no highlighting
-highlight LineNr term=bold cterm=NONE ctermfg=black ctermbg=NONE gui=NONE guifg=black guibg=NONE
-highlight SignColumn ctermbg=NONE guifg=NONE
-" update on stop typing
-let g:gitgutter_realtime = 0
-" update on switch buffer
-let g:gitgutter_eager = 1
-" ignore whitespace      
-let g:gitgutter_diff_args = '-w'    
-" ===============================================================================
+" LINUX
+" if has("autocmd")
+  " au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+  " au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  " au VimEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+  " au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+" endif
+" CYGWIN
+let &t_ti.="\e[1 q"
+let &t_SI.="\e[5 q"
+let &t_EI.="\e[1 q"
+let &t_te.="\e[0 q"
 
 " wild menu for better tab completion
 set wildmode=longest:full
 set wildmenu
 
-" conqueterm options
-let g:ConqueTerm_Color = 2
-let g:ConqueTerm_SessionSupport = 1
-let g:ConqueTerm_InsertOnEnter = 1
-let g:ConqueTerm_CWInsert = 1
-let g:ConqueTerm_CloseOnEnd = 1
-let g:ConqueTerm_ReadUnfocused = 1
-
-" enable pathogen for installing bundles
-call pathogen#infect()
-call pathogen#helptags()
-
-let g:ScreenShellGnuScreenVerticalSupport = 'native'
-
-
-" tab navigation Ctrl-n for next, Ctrl-p for previous
-nmap <silent> <C-n> :tabnext<CR>
-nmap <silent> <C-p> :tabprev<CR>
-imap <silent> <C-n> <esc><C-n>
-imap <silent> <C-p> <esc><C-p>
-
 " buffer navigation
 nnoremap <C-l> :bn<CR>
 nnoremap <C-h> :bp<CR>
-
-" Mini Muf Explorer
-" nnoremap <C-l> :MBEbn<CR>
-" nnoremap <C-h> :MBEbp<CR>
-" hi link MBENormal Comment
-" hi link MBEChanged Special
-" hi link MBEVisibleNormal SpecialKey
-" hi link MBEVisibleChanged Title
-" hi link MBEVisibleActiveNormal StatusLine
-" hi link MBEVisibleActiveChanged Error
-
-"
-" airline options
-" ===============================================================================
-" powerline fonts for airline
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-
-" shorten timeout length
-set timeout ttimeoutlen=50
-
-" don't wait for split
-set laststatus=2
-
-" buffer tab line
-let g:airline#extensions#tabline#enabled = 1
-" ===============================================================================
-
-" gundo
-nnoremap <F6> :GundoToggle<CR>
-
-" tagbar
-nnoremap <silent> <F7> :TagbarToggle<CR>
-let g:tagbar_left = 1
-
-" NERDTree
-nnoremap <silent> <F8> :NERDTreeToggle<CR>
 
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
@@ -134,27 +96,166 @@ if exists("&undodir")
         set undodir=~/.vim/undo
 endif
 
+" modelines
+set modeline
+set modelines=1
+
+
+" Hex editing
+ nnoremap <C-X> :Hexmode<CR>
+ inoremap <C-X> <Esc> :Hexmode<CR>
+ vnoremap <C-X> :<C-U>Hexmode<CR>
+
+" ex command for toggling hex mode - define mapping if desired
+command -bar Hexmode call ToggleHex()
+
+" helper function to toggle hex mode
+function ToggleHex()
+" hex mode should be considered a read-only operation
+" save values for modified and read-only for restoration later,
+" and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries 
+    "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+    setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+
+" typing this gives current date
+iab <expr> DATE strftime("%b %d, %Y")
+
+" intro for c or c++ files
+iab cintro /**********************************************************
+\<CR>*    B. Zimmerman                                         *
+\<CR>*                                                         *
+\<CR>*                                                         *
+\<CR>*                                                         *
+\<CR>*                                                         *
+\<CR>**********************************************************/
+
+" intro for latex files
+iab texintro %=========================================================%
+\<CR>%    B. Zimmerman                                         %
+\<CR>%                                                         %
+\<CR>%                                                         %
+\<CR>%                                                         %
+\<CR>%                                                         %
+\<CR>%=========================================================%
+
+
+" disable fucking auto comment
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+
+
+" ============== PLUGIN OPTIONS ===========================
 "
+" airline options
+" ===============================================================================
+" powerline fonts for airline
+" let g:airline_powerline_fonts = 1
+" if !exists('g:airline_symbols')
+  " let g:airline_symbols = {}
+" endif
+" let g:airline_symbols.space = "\ua0"
+
+" shorten timeout length
+set timeout ttimeoutlen=50
+
+" don't wait for split
+set laststatus=2
+
+" buffer tab line
+let g:airline#extensions#tabline#enabled = 1
+" ===============================================================================
+"
+" gundo
+"nnoremap <F6> :GundoToggle<CR>
+
+" tagbar
+"nnoremap <silent> <F7> :TagbarToggle<CR>
+"let g:tagbar_left = 1
+
+" NERDTree
+nnoremap <silent> <F8> :NERDTreeToggle<CR>
+
+" vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" nmap ga <Plug>(EasyAlign)
+
+
 " syntastic options
 " ===============================================================================
 " colors
-hi SpellBad ctermfg=yellow ctermbg=red guifg=yellow guibg=red
-hi SpellCap ctermfg=red ctermbg=yellow guifg=red  guibg=yellow
+"hi SpellBad ctermfg=yellow ctermbg=red guifg=yellow guibg=red
+"hi SpellCap ctermfg=red ctermbg=yellow guifg=red  guibg=yellow
 " check header files
-let g:syntastic_cpp_check_header = 1
+"let g:syntastic_cpp_check_header = 1
 " re-check includes at file write
-let g:syntastic_cpp_auto_refresh_includes = 1
+"let g:syntastic_cpp_auto_refresh_includes = 1
 " include files directories
-let g:syntastic_cpp_include_dirs = [ 'include', '/usr/local/include/root', 'scripts/include' ]
+"let g:syntastic_cpp_include_dirs = [ 'include', '/usr/local/include/root', 'scripts/include' ]
 " c++ 11 standard
-let g:syntastic_cpp_compiler_options = '-std=c++11'
+"let g:syntastic_cpp_compiler_options = '-std=c++11'
 " latex
-let g:syntastic_tex_checkers = []
+"let g:syntastic_tex_checkers = []
 " ===============================================================================
 
+
+" 
+" git-gutter: 
+" ===============================================================================
+" update on stop typing
+"let g:gitgutter_realtime = 0
+" update on switch buffer
+"let g:gitgutter_eager = 1
+" ignore whitespace      
+"let g:gitgutter_diff_args = '-w'    
+" ===============================================================================
+"
+
+" conqueterm options
+" ===============================================================================
+"let g:ConqueTerm_Color = 2
+"let g:ConqueTerm_SessionSupport = 1
+"let g:ConqueTerm_InsertOnEnter = 1
+"let g:ConqueTerm_CWInsert = 1
+"let g:ConqueTerm_CloseOnEnd = 1
+"let g:ConqueTerm_ReadUnfocused = 1
+"let g:ScreenShellGnuScreenVerticalSupport = 'native'
 "
 " cscope mappings
-" ===============================================================================
+" ============================================================================{{{
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CSCOPE settings for vim           
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -183,27 +284,27 @@ let g:syntastic_tex_checkers = []
 
 " This tests to see if vim was configured with the '--enable-cscope' option
 " when it was compiled.  If it wasn't, time to recompile vim... 
-if has("cscope")
+""if has("cscope")
 
     """"""""""""" Standard cscope/vim boilerplate
 
     " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
-    set cscopetag
+    ""set cscopetag
 
     " check cscope for definition of a symbol before checking ctags: set to 1
     " if you want the reverse search order.
-    set csto=0
+    ""set csto=0
 
     " add any cscope database in current directory
-    if filereadable("cscope.out")
-        cs add cscope.out  
+    ""if filereadable("cscope.out")
+        ""cs add cscope.out  
     " else add the database pointed to by environment variable 
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
+    ""elseif $CSCOPE_DB != ""
+        ""cs add $CSCOPE_DB
+    ""endif
 
     " show msg when any other cscope db added
-    set cscopeverbose  
+    ""set cscopeverbose  
 
 
     """"""""""""" My cscope/vim key mappings
@@ -245,14 +346,14 @@ if has("cscope")
     " go back to where you were before the search.  
     "
 
-    nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+    ""nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+    ""nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
 
 
     " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
@@ -263,14 +364,14 @@ if has("cscope")
     " can be simulated roughly via:
     "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>	
 
-    nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
-    nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
-    nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
+    ""nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    ""nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+    ""nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
 
 
     " Hitting CTRL-space *twice* before the search type does a vertical 
@@ -279,14 +380,14 @@ if has("cscope")
     " (Note: you may wish to put a 'set splitright' in your .vimrc
     " if you prefer the new window on the right instead of the left
 
-    nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
-    nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
-    nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+    ""nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+    ""nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+    ""nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+    ""nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+    ""nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+    ""nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
+    ""nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+    ""nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
     """"""""""""" key map timeouts
@@ -317,36 +418,12 @@ if has("cscope")
     "
     "set ttimeoutlen=100
 
-endif
-" ===============================================================================
-
-" modelines
-set modeline
-set modelines=1
-
-" typing this gives current date
-iab <expr> DATE strftime("%b %d, %Y")
-
-" intro for c or c++ files
-iab cintro /**********************************************************
-\<CR>*    B. Zimmerman                                         *
-\<CR>*                                                         *
-\<CR>*                                                         *
-\<CR>*                                                         *
-\<CR>*                                                         *
-\<CR>**********************************************************/
-
-" intro for latex files
-iab texintro %=========================================================%
-\<CR>%    B. Zimmerman                                         %
-\<CR>%                                                         %
-\<CR>%                                                         %
-\<CR>%                                                         %
-\<CR>%                                                         %
-\<CR>%=========================================================%
+""endif
+" ============================================================================}}}
 
 
-" disable fucking auto comment
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" filetype specific settings
+autocmd FileType make setlocal noexpandtab
 
 " vim: set undofile:
