@@ -93,8 +93,9 @@ alias l='ls -CF'
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-alias truecrypt='touch /media/removable/SD\ Card/tc && /usr/bin/truecrypt -t -m=nokernelcrypto /media/removable/SD\ Card/tc'
-alias truecrypt-umnount='/usr/bin/truecrypt -t -d'
+alias truecrypt='touch ~/Shared/tc && /usr/bin/truecrypt -t -m=nokernelcrypto ~/Shared/tc'
+alias truecrypt-umnount='/usr/bin/truecrypt -t -d && touch ~/Shared/tc'
+alias vi='vim'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
